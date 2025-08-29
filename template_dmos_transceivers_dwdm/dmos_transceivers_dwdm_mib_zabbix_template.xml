@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>7.2</version>
+    <template_groups>
+        <template_group>
+            <uuid>85dcfb92cf3f48e7bb9089342e98559c</uuid>
+            <name>DM - Templates</name>
+        </template_group>
+    </template_groups>
+    <templates>
+        <template>
+            <uuid>64c34508d5e048bb9851c6f64e68b0e1</uuid>
+            <template>DM Template - DmOS Transceivers DWDM</template>
+            <name>DM Template - DmOS Transceivers DWDM</name>
+            <groups>
+                <group>
+                    <name>DM - Templates</name>
+                </group>
+            </groups>
+            <discovery_rules>
+                <discovery_rule>
+                    <uuid>22a98a0ef95b4eea898646d77f0949f8</uuid>
+                    <name>DmOS Transceivers DWDM</name>
+                    <type>EXTERNAL</type>
+                    <key>dmos_dwdm_mib.py[&quot;{HOST.CONN}&quot;, &quot;{$SNMP_COMMUNITY}&quot;]</key>
+                    <delay>60m</delay>
+                    <lifetime>30d</lifetime>
+                    <enabled_lifetime_type>DISABLE_NEVER</enabled_lifetime_type>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>07b648ab8a4a415d84b1d95f8608334b</uuid>
+                            <name>DWDM TCV Chromatic Dispersion : Interface {#IFDESCR}({#IFALIAS})</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>get[DMOS-TRANSCEIVER-MIB::chromaticDispersion.{#SNMPINDEX}]</snmp_oid>
+                            <key>transceiverDwdmChromaticDispersion.[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <units>ps/nm</units>
+                            <description>Current transceiver Chromatic Dispersion</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Transceivers DWDM Diagnostics</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>f2d9a56812ee42068c3a83f87d596040</uuid>
+                            <name>DWDM TCV Diagnostics FERC : Interface {#IFDESCR}({#IFALIAS})</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>get[DMOS-TRANSCEIVER-MIB::ferc.{#SNMPINDEX}]</snmp_oid>
+                            <key>transceiverDwdmDiagFerc.[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <value_type>TEXT</value_type>
+                            <description>Current transceiver FERC</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Transceivers DWDM Diagnostics</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>804884c589fa4e7582c41bff23942039</uuid>
+                            <name>DWDM TCV Diagnostics OSNR : Interface {#IFDESCR}({#IFALIAS})</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>get[DMOS-TRANSCEIVER-MIB::osnr.{#SNMPINDEX}]</snmp_oid>
+                            <key>transceiverDwdmDiagOsnr.[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>dB</units>
+                            <description>Current transceiver OSNR</description>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <parameters>
+                                        <parameter>0.01</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Transceivers DWDM Diagnostics</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>b1af7719875a4049bc4fc84240696cc4</uuid>
+                            <name>DWDM TCV Diagnostics PREFEC BER : Interface {#IFDESCR}({#IFALIAS})</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>get[DMOS-TRANSCEIVER-MIB::prefec.{#SNMPINDEX}]</snmp_oid>
+                            <key>transceiverDwdmDiagPrefec.[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <value_type>TEXT</value_type>
+                            <description>Current transceiver Pre-FEC BER</description>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Transceivers DWDM Diagnostics</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>f78cb29508e64e36951b6537406d9e54</uuid>
+                            <name>DWDM TCV Diagnostics Qfactor : Interface {#IFDESCR}({#IFALIAS})</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>get[DMOS-TRANSCEIVER-MIB::qfactor.{#SNMPINDEX}]</snmp_oid>
+                            <key>transceiverDwdmDiagQfactor.[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <trends>0</trends>
+                            <units>dB</units>
+                            <description>Current transceiver Qfactor</description>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <parameters>
+                                        <parameter>0.01</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Transceivers DWDM Diagnostics</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>006c326b5ae54545a527bfd36535ca78</uuid>
+                            <name>DWDM TCV Diagnostics Qvalue : Interface {#IFDESCR}({#IFALIAS})</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>get[DMOS-TRANSCEIVER-MIB::qvalue.{#SNMPINDEX}]</snmp_oid>
+                            <key>transceiverDwdmDiagQvalue.[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <trends>0</trends>
+                            <units>dB</units>
+                            <description>Current transceiver Qvalue</description>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <parameters>
+                                        <parameter>0.01</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>Transceivers DWDM Diagnostics</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <uuid>e34362c2cb414bb7adde194052f7fb18</uuid>
+                            <name>Interface {#IFDESCR}({#IFALIAS}): DWDM Transceiver Diagnostics</name>
+                            <yaxismin>-45</yaxismin>
+                            <yaxismax>8</yaxismax>
+                            <ymin_type_1>FIXED</ymin_type_1>
+                            <ymax_type_1>FIXED</ymax_type_1>
+                            <graph_items>
+                                <graph_item>
+                                    <color>274482</color>
+                                    <calc_fnc>ALL</calc_fnc>
+                                    <item>
+                                        <host>DM Template - DmOS Transceivers DWDM</host>
+                                        <key>transceiverDwdmDiagOsnr.[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <color>1A7C11</color>
+                                    <calc_fnc>ALL</calc_fnc>
+                                    <item>
+                                        <host>DM Template - DmOS Transceivers DWDM</host>
+                                        <key>transceiverDwdmDiagQfactor.[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>2</sortorder>
+                                    <color>F63100</color>
+                                    <calc_fnc>ALL</calc_fnc>
+                                    <item>
+                                        <host>DM Template - DmOS Transceivers DWDM</host>
+                                        <key>transceiverDwdmDiagQvalue.[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+</zabbix_export>
