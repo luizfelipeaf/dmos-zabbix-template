@@ -36,6 +36,16 @@
                             <delay>5m</delay>
                             <units>ps/nm</units>
                             <description>Current transceiver Chromatic Dispersion</description>
+                            <preprocessing>
+                                <step>
+                                    <type>IN_RANGE</type>
+                                    <parameters>
+                                        <parameter>0</parameter>
+                                        <parameter>12000</parameter>
+                                    </parameters>
+                                    <error_handler>DISCARD_VALUE</error_handler>
+                                </step>
+                            </preprocessing>
                             <tags>
                                 <tag>
                                     <tag>Application</tag>
@@ -193,6 +203,12 @@
                     </graph_prototypes>
                 </discovery_rule>
             </discovery_rules>
+            <macros>
+                <macro>
+                    <macro>{$SNMP_COMMUNITY}</macro>
+                    <value>public</value>
+                </macro>
+            </macros>
         </template>
     </templates>
 </zabbix_export>
