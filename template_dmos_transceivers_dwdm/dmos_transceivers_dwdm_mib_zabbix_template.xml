@@ -203,12 +203,6 @@
                     </graph_prototypes>
                 </discovery_rule>
             </discovery_rules>
-            <macros>
-                <macro>
-                    <macro>{$SNMP_COMMUNITY}</macro>
-                    <value>public</value>
-                </macro>
-            </macros>
         </template>
     </templates>
 </zabbix_export>
