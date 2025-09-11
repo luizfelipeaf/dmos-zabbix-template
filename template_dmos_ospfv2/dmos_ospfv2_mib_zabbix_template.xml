@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>7.2</version>
+    <template_groups>
+        <template_group>
+            <uuid>41aa33b09cbf4e769891dd9db0b11ba8</uuid>
+            <name>DATACOM</name>
+        </template_group>
+        <template_group>
+            <uuid>85dcfb92cf3f48e7bb9089342e98559c</uuid>
+            <name>DM - Templates</name>
+        </template_group>
+    </template_groups>
+    <templates>
+        <template>
+            <uuid>2db1d85a41624d0f90c9b43f174cfea0</uuid>
+            <template>DM Template - Datacom OSPFv2</template>
+            <name>DM Template - Datacom OSPFv2</name>
+            <description>Template for OSPFv2 MIB described in RFC 4750.
+
+Template is valid for all DmOS platforms and other vendors.</description>
+            <groups>
+                <group>
+                    <name>DATACOM</name>
+                </group>
+                <group>
+                    <name>DM - Templates</name>
+                </group>
+            </groups>
+            <discovery_rules>
+                <discovery_rule>
+                    <uuid>b367589387ea41e29b7822684d022ca8</uuid>
+                    <name>OSPFv2 Areas</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#AREA_ID},OSPF-MIB::ospfAreaId,{#AREA_STATUS},OSPF-MIB::ospfAreaStatus]</snmp_oid>
+                    <key>ospfv2.area</key>
+                    <delay>60m</delay>
+                    <lifetime>30d</lifetime>
+                    <enabled_lifetime_type>DISABLE_NEVER</enabled_lifetime_type>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>0b9bf200e5a1425994ef7bef64e016bc</uuid>
+                            <name>OSPFv2 Area {#AREA_ID} LSA Counter</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>get[OSPF-MIB::ospfAreaLsaCount.{#SNMPINDEX}]</snmp_oid>
+                            <key>ospfv2.area.lsa.count.[{#SNMPINDEX}]</key>
+                            <delay>10m</delay>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPFv2 Area</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>b6321370c9ae43459340086421250731</uuid>
+                            <name>OSPFv2 Area {#AREA_ID} Status</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>get[OSPF-MIB::ospfAreaStatus.{#SNMPINDEX}]</snmp_oid>
+                            <key>ospfv2.area.status.[{#SNMPINDEX}]</key>
+                            <delay>10m</delay>
+                            <valuemap>
+                                <name>OSPFv2 Area Status</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPFv2 Area</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <uuid>276d562b239c459a832ea9ece383a755</uuid>
+                            <name>OSPFv2 LSA Counter for Area  {#AREA_ID}</name>
+                            <show_work_period>NO</show_work_period>
+                            <show_triggers>NO</show_triggers>
+                            <graph_items>
+                                <graph_item>
+                                    <color>1A7C11</color>
+                                    <calc_fnc>ALL</calc_fnc>
+                                    <item>
+                                        <host>DM Template - Datacom OSPFv2</host>
+                                        <key>ospfv2.area.lsa.count.[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>4e84698f856643159459b21d9483a95c</uuid>
+                    <name>OSPFv2 Interfaces</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#OSPF_IP_INTF},OSPF-MIB::ospfIfIpAddress,{#OSPF_AREA_INTF},OSPF-MIB::ospfIfAreaId,{#OSPF_IF_TYPE},OSPF-MIB::ospfIfType,{#OSPF_IF_STATE},OSPF-MIB::ospfIfState,{#OSPF_IF_DR},OSPF-MIB::ospfIfDesignatedRouter,{#OSPF_IF_BDR},OSPF-MIB::ospfIfBackupDesignatedRouter,{#OSPF_IF_STATUS},OSPF-MIB::ospfIfStatus]</snmp_oid>
+                    <key>ospfv2.ifaces</key>
+                    <delay>60m</delay>
+                    <lifetime>30d</lifetime>
+                    <enabled_lifetime_type>DISABLE_NEVER</enabled_lifetime_type>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>583a661145b14e859ff3d4e30674e8b0</uuid>
+                            <name>OSPFv2 Interface {#OSPF_IP_INTF} Area ID</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>get[OSPF-MIB::ospfIfAreaId.{#SNMPINDEX}]</snmp_oid>
+                            <key>ospfv2.ifaces.area.[{#SNMPINDEX}]</key>
+                            <delay>60m</delay>
+                            <value_type>TEXT</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPFv2 Interface</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>6c14b1d0edab4feb9b5c5e3a88983740</uuid>
+                            <name>OSPFv2 Interface {#OSPF_IP_INTF} BDR</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>get[ospfIfBackupDesignatedRouter.{#SNMPINDEX}]</snmp_oid>
+                            <key>ospfv2.ifaces.bdr.[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <value_type>TEXT</value_type>
+                            <preprocessing>
+                                <step>
+                                    <type>STR_REPLACE</type>
+                                    <parameters>
+                                        <parameter>0.0.0.0</parameter>
+                                        <parameter>-</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPFv2 Interface</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>8d05d48a88b04f9d802c929ef75b3404</uuid>
+                            <name>OSPFv2 Interface {#OSPF_IP_INTF} DR</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>get[ospfIfDesignatedRouter.{#SNMPINDEX}]</snmp_oid>
+                            <key>ospfv2.ifaces.dr.[{#SNMPINDEX}]</key>
+                            <delay>5m</delay>
+                            <value_type>TEXT</value_type>
+                            <preprocessing>
+                                <step>
+                                    <type>STR_REPLACE</type>
+                                    <parameters>
+                                        <parameter>0.0.0.0</parameter>
+                                        <parameter>-</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPFv2 Interface</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>deccf27a9d964ef394921a564a9dbc9c</uuid>
+                            <name>OSPFv2 Interface {#OSPF_IP_INTF} Events</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>get[OSPF-MIB::ospfIfEvents.{#SNMPINDEX}]</snmp_oid>
+                            <key>ospfv2.ifaces.events.[{#SNMPINDEX}]</key>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPFv2 Interface</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>0c44362ad17f462c8a7928fbb28be47e</uuid>
+                                    <expression>change(/DM Template - Datacom OSPFv2/ospfv2.ifaces.events.[{#SNMPINDEX}])&lt;&gt;0</expression>
+                                    <name>OSPFv2 interface  {#OSPF_IP_INTF} changed state</name>
+                                    <opdata>Current state: {ITEM.LASTVALUE1}</opdata>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>ba7eae0ea3f840aa9b9ea1cb8705114f</uuid>
+                            <name>OSPFv2 Interface {#OSPF_IP_INTF} State</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>get[OSPF-MIB::ospfIfState.{#SNMPINDEX}]</snmp_oid>
+                            <key>ospfv2.ifaces.state.[{#SNMPINDEX}]</key>
+                            <valuemap>
+                                <name>OSPF Interface State</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPFv2 Interface</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>b5e2262a60994a6894dc43ad69f3a86d</uuid>
+                            <name>OSPFv2 Interface {#OSPF_IP_INTF} Status</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>get[OSPF-MIB::ospfIfStatus.{#SNMPINDEX}]</snmp_oid>
+                            <key>ospfv2.ifaces.status.[{#SNMPINDEX}]</key>
+                            <valuemap>
+                                <name>OSPFv2 Area Status</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPFv2 Interface</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>358b00e6c3104e53b43c848102f7c7a8</uuid>
+                            <name>OSPFv2 Interface {#OSPF_IP_INTF} Type</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>get[OSPF-MIB::ospfIfType.{#SNMPINDEX}]</snmp_oid>
+                            <key>ospfv2.ifaces.type.[{#SNMPINDEX}]</key>
+                            <delay>60m</delay>
+                            <valuemap>
+                                <name>OSPF Interface Type</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPFv2 Interface</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>b5323b559fef46668b0018c2cd72b371</uuid>
+                    <name>OSPFv2 Neighbors</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#OSPFV2_NEIGH_IP},OSPF-MIB::ospfNbrIpAddr,{#OSPFV2_NEIGH_RID},OSPF-MIB::ospfNbrRtrId,{#OSPFV2_NEIGH_STATE},OSPF-MIB::ospfNbrState]</snmp_oid>
+                    <key>ospfv2.neighbor</key>
+                    <delay>60m</delay>
+                    <lifetime>30d</lifetime>
+                    <enabled_lifetime_type>DISABLE_NEVER</enabled_lifetime_type>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>893f05e72b01440a8cf05fff65e65b58</uuid>
+                            <name>OSPFv2 Neighbor {#OSPFV2_NEIGH_RID} Interface {#SNMPINDEX} Events</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>get[OSPF-MIB::ospfNbrEvents.{#SNMPINDEX}]</snmp_oid>
+                            <key>ospfv2.neighbor.events.[{#SNMPINDEX}]</key>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPFv2 Neighbor</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>1d14184e48f04c64848deb41bae6f4bc</uuid>
+                                    <expression>change(/DM Template - Datacom OSPFv2/ospfv2.neighbor.events.[{#SNMPINDEX}])&lt;&gt;0</expression>
+                                    <name>OSPFv2 neighbor  {#OSPFV2_NEIGH_IP} changed state {#SNMPVALUE}</name>
+                                    <opdata>Current state: {ITEM.LASTVALUE1}</opdata>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>fc8c52bd7b284ac48dc2c62224a5b316</uuid>
+                            <name>OSPFv2 Neighbor {#OSPFV2_NEIGH_RID}  Interface {#SNMPINDEX} IP address</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>get[OSPF-MIB::ospfNbrIpAddr.{#SNMPINDEX}]</snmp_oid>
+                            <key>ospfv2.neighbor.ip.address.[{#SNMPINDEX}]</key>
+                            <value_type>TEXT</value_type>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPFv2 Neighbor</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>8eb093fdb9394ce0b55e3a2ea5977cc7</uuid>
+                            <name>OSPFv2 Neighbor {#OSPFV2_NEIGH_RID}  Interface {#SNMPINDEX} State</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>get[OSPF-MIB::ospfNbrState.{#SNMPINDEX}]</snmp_oid>
+                            <key>ospfv2.neighbor.state.[{#SNMPINDEX}]</key>
+                            <valuemap>
+                                <name>OSPF Neighbor State</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPFv2 Neighbor</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>4975b168f42e42df9667e5b473794da8</uuid>
+                    <name>OSPFv2 Status</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#ROUTERID},OSPF-MIB::ospfRouterId,{#ADMINSTAT},OSPF-MIB::ospfAdminStat,{#EXTERNAL_LSA_COUNT},OSPF-MIB::ospfExternLsaCount]</snmp_oid>
+                    <key>ospfv2.status</key>
+                    <delay>60m</delay>
+                    <lifetime>30d</lifetime>
+                    <enabled_lifetime_type>DISABLE_NEVER</enabled_lifetime_type>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>a7eefd5ebfd74824a49c6288ed5c81b1</uuid>
+                            <name>OSPFv2 Admin State</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>get[OSPF-MIB::ospfAdminStat.{#SNMPINDEX}]</snmp_oid>
+                            <key>ospfv2.admin.state.[{#SNMPINDEX}]</key>
+                            <delay>10m</delay>
+                            <valuemap>
+                                <name>OSPF Admin Status</name>
+                            </valuemap>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPFv2 Status</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>fa5ec6bbb33d4a76b9e4e7d2f2fd7530</uuid>
+                            <name>OSPFv2 External LSAs Counter</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>get[OSPF-MIB::ospfExternLsaCount.{#SNMPINDEX}]</snmp_oid>
+                            <key>ospfv2.external.lsa.count.[{#SNMPINDEX}]</key>
+                            <delay>10m</delay>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>OSPFv2 Status</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+            <valuemaps>
+                <valuemap>
+                    <uuid>da2edd3e90f94ad3ac392e32a695a499</uuid>
+                    <name>OSPF Admin Status</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>enabled</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>disabled</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>6bcdac1b718247f6aaddc3777bf6c5e0</uuid>
+                    <name>OSPF Interface State</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>down</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>loopback</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>waiting</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>4</value>
+                            <newvalue>pointToPoint</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>5</value>
+                            <newvalue>designatedRouter</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>6</value>
+                            <newvalue>backupDesignatedRouter</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>7</value>
+                            <newvalue>otherDesignatedRouter</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>3e8a86e3dad04828b442926a297c2bbc</uuid>
+                    <name>OSPF Interface Type</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>broadcast</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>nbma</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>pointToPoint</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>4</value>
+                            <newvalue>pointToMultipoint</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>5</value>
+                            <newvalue>virtualLink</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>6</value>
+                            <newvalue>shamLink</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>5a122cc015fa40389e98927426aa1c43</uuid>
+                    <name>OSPF Neighbor State</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>down</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>attempt</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>init</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>4</value>
+                            <newvalue>twoWay</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>5</value>
+                            <newvalue>exchangeStart</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>6</value>
+                            <newvalue>exchange</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>7</value>
+                            <newvalue>loading</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>8</value>
+                            <newvalue>full</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>b0b6c941819141578ae3d57602d4dad2</uuid>
+                    <name>OSPFv2 Area Status</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>active</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>notInService</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>notReady</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>4</value>
+                            <newvalue>createAndGo</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>5</value>
+                            <newvalue>createAndWait</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>6</value>
+                            <newvalue>destroy</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+            </valuemaps>
+        </template>
+    </templates>
+</zabbix_export>

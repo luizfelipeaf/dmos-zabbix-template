@@ -130,6 +130,22 @@ Used for DATACOM DMOS-ONU-COUNTING-MIB for ONUs counting by ponlink and total.
 
 - {#PONIFDESCR} -PON description
 
+## Template ICMP Probe
+
+##### Zabbix Macros:
+
+- {$SNMP_COMMUNITY} - SNMP community
+
+##### Zabbix Discovery Macros:
+
+- {#ICMP_PROBE_TARGET} This object indicates the type of address stored in the corresponding
+pingResultsIpTargetAddress object.
+
+- {#ICMP_PROBE_RESULTS_SENT} The value of this object reflects the number of probes sent for the
+corresponding pingCtlEntry and pingResultsEntry.
+
+- {#ICMP_PROBE_LAST_GOOD} Date and time when the last response was received for a probe.
+
 ## Template DmOS-TRANSCEIVERS-MIB
 
 ##### Zabbix Macros:
@@ -153,7 +169,7 @@ To discovery process works it is necessary upload the script file "dmos_transcei
 your Zabbix server in external scripts directory located on Ubuntu
 at "/usr/lib/zabbix/externalscripts/".
 
-## Template ICMP Probe
+## Template DmOS-TRANSCEIVERS-MIB DWDM Diagnostic
 
 ##### Zabbix Macros:
 
@@ -161,10 +177,81 @@ at "/usr/lib/zabbix/externalscripts/".
 
 ##### Zabbix Discovery Macros:
 
-- {#ICMP_PROBE_TARGET} This object indicates the type of address stored in the corresponding
-pingResultsIpTargetAddress object.
+- {#SNMPINDEX} Interface index
 
-- {#ICMP_PROBE_RESULTS_SENT} The value of this object reflects the number of probes sent for the
-corresponding pingCtlEntry and pingResultsEntry.
+- {#IFALIAS} This object is an 'alias' name for the interface as specified by a network manager,
+and provides a non-volatile 'handle' for the interface.
 
-- {#ICMP_PROBE_LAST_GOOD} Date and time when the last response was received for a probe.
+- {#IFDESCR} A textual string containing information about the interface. This string should
+include the name of the manufacturer, the product name and the version of the interface
+hardware/software.
+
+To discovery process works it is necessary upload the script file "dmos_dwdm_mib.py" to
+your Zabbix server in external scripts directory located on Ubuntu
+at "/usr/lib/zabbix/externalscripts/".
+
+## Template DmOS-OSPFv2
+
+##### Zabbix Macros:
+
+- {$SNMP_COMMUNITY} - SNMP community
+
+##### Zabbix Discovery Macros:
+
+- {#SNMPINDEX} Interface index
+
+- {#AREA_ID} A 32-bit integer uniquely identifying an area.
+
+- {#AREA_STATUS} This object permits management of the table by facilitating actions such as row
+creation, construction, and destruction.
+
+- {#OSPF_IP_INTF} The IP address of this OSPF interface.
+
+- {#OSPF_AREA_INTF} A 32-bit integer uniquely identifying the area to which the interface connects.
+
+- {#OSPF_IF_TYPE} The OSPF interface type.
+
+- {#OSPF_IF_STATE} The OSPF Interface State.
+
+- {#OSPF_IF_DR} The IP address of the designated router.
+
+- {#OSPF_IF_BDR} The IP address of the backup designated router.
+
+- {#OSPF_IF_STATUS} This object permits management of the table by facilitating actions such as
+row creation, construction, and destruction
+
+- {#OSPFV2_NEIGH_IP} The IP address this neighbor is using in its IP source address.
+
+- {#OSPFV2_NEIGH_RID} A 32-bit integer (represented as a type IpAddress) uniquely identifying the
+neighboring router in the Autonomous System.
+
+- {#OSPFV2_NEIGH_STATE} The state of the relationship with this neighbor.
+
+- {#ROUTERID} A 32-bit integer uniquely identifying the router in the Autonomous System.
+
+- {#ADMINSTAT} The administrative status of OSPF in the router.
+
+- {#EXTERNAL_LSA_COUNT} The number of external (LS type-5) link state advertisements in the link
+state database.
+
+## Template DmOS-OSPFv3
+
+##### Zabbix Macros:
+
+- {$SNMP_COMMUNITY} - SNMP community
+
+##### Zabbix Discovery Macros:
+
+- {#AREA_ID_V3} A 32-bit integer uniquely identifying the area to which the interface connects.
+
+- {#OSPFV3_NEIGH_IP} The IPv6 address of the neighbor associated with the local link.
+
+- {#OSPFV3_NEIGH_STATE} The state of the relationship with this neighbor.
+
+- {#ROUTERID_V3} A 32-bit unsigned integer uniquely identifying the router in the Autonomous
+System.
+
+To discovery process works it is necessary upload the script file "dmos_ospfv3_mib.py" to
+your Zabbix server in external scripts directory located on Ubuntu
+at "/usr/lib/zabbix/externalscripts/".
+
