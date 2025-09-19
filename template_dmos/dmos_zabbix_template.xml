@@ -94,20 +94,12 @@
                     <uuid>2fcbe0e771e9486e9efab72e5957d635</uuid>
                     <name>Device uptime</name>
                     <type>SNMP_AGENT</type>
-                    <snmp_oid>get[SNMPv2-MIB::sysUpTime.0]</snmp_oid>
+                    <snmp_oid>get[DMOS-SYSMON-MIB::cpuSysUptime.0]</snmp_oid>
                     <key>sysUpTime</key>
                     <delay>60m</delay>
                     <history>7d</history>
                     <units>uptime</units>
                     <description>The time since the network management portion of the system was last re-initialized.</description>
-                    <preprocessing>
-                        <step>
-                            <type>MULTIPLIER</type>
-                            <parameters>
-                                <parameter>0.01</parameter>
-                            </parameters>
-                        </step>
-                    </preprocessing>
                     <tags>
                         <tag>
                             <tag>Application</tag>
